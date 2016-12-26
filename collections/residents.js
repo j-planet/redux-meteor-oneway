@@ -8,10 +8,12 @@ if (Meteor.isServer)
     Meteor.publish('residents.byMood', function(isHappyList){
 
         console.log('in publish residents.byMood', isHappyList);
+
         if (isHappyList === undefined)
             throw new Meteor.Error(500, 'Must provide isHappy.');
 
         return ResidentsCollection.find({isHappy: {$in: isHappyList}});
+
     });
 }
 

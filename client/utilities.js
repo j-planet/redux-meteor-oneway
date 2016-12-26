@@ -4,6 +4,11 @@
 
 import React from 'react';
 
+Bert.defaults = {
+    hideDelay: 1500,
+    style: 'growl-top-right'
+};
+
 // if error, use Bert to show error bar
 // if success, either run the "success" function (if function) or show it as a message (if string)
 exports.callBackBert = function(success){

@@ -8,3 +8,4 @@ meteor remove autopublish
 
 meteor add react-meteor-data
 meteor add themeteorchef:bert
+meteor add accounts-ui accounts-password
