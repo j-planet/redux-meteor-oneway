@@ -1,12 +1,7 @@
 import React from 'react';
 const Component = React.Component;
-const PropTypes = React.PropTypes;
-import { connect } from 'react-redux';
-import { Tracker } from 'meteor/tracker';
 
 import { callBackBert } from './utilities';
-import setResidents from './actions/set_residents';
-import { ResidentsCollection } from '../collections/residents';
 import ResidentsList from './residents_list';
 
 
@@ -28,16 +23,6 @@ class Homepage extends Component {
                 onReady: () => console.log('>>> handle is ready for', isHappyList),
                 onStop: (err) => console.log('>>> handle STOPPED for', isHappyList)
             });
-
-        Tracker.autorun(() => {
-
-            const residents = ResidentsCollection.find().fetch();
-            console.log('fetched data:', residents);
-
-            this.props.dispatch(setResidents(residents));
-
-        });
-
     }
 
     componentWillMount() {
@@ -117,12 +102,4 @@ class Homepage extends Component {
     }
 }
 
-Homepage.propTypes = {
-    residents: PropTypes.arrayOf(PropTypes.object)
-};
-
-function mapStateToProps({dispatch}) {
-    return { dispatch };
-}
-
-export default connect(mapStateToProps)(Homepage);
+export default Homepage;

@@ -2,7 +2,8 @@ import React from 'react';
 const Component = React.Component;
 const PropTypes = React.PropTypes;
 import { createContainer } from 'meteor/react-meteor-data';
-import { connect } from 'react-redux';
+
+import { ResidentsCollection } from '../collections/residents';
 
 
 class ResidentsList extends Component {
@@ -37,21 +38,13 @@ ResidentsList.propTypes = {
     residents: PropTypes.arrayOf(PropTypes.object)
 };
 
-const container = createContainer(
+export default createContainer(
     () =>
     {
         return {
-            currentUser: Meteor.user()
+            currentUser: Meteor.user(),
+            residents: ResidentsCollection.find().fetch()
         };
     }
     , ResidentsList
 );
-
-export default connect(
-
-    ({residents}) =>
-    {
-        return {residents};
-    }
-
-)(container);
